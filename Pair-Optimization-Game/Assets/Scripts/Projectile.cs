@@ -23,6 +23,16 @@ public class Projectile : MonoBehaviour
 
     }
 
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Enemy")
+        {
+            collision.gameObject.GetComponent<Enemy>().Die(); //Might be better as event? 
+            Destroy(this.gameObject);
+        }
+    }
+
     IEnumerator SelfDestruct()
     {
         yield return new WaitForSeconds(lifespan);
