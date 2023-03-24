@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 586732762957057488}
   - component: {fileID: 586732762957057491}
   - component: {fileID: 586732762957057490}
-  - component: {fileID: 7967271282476220223}
+  - component: {fileID: -1936454060408841941}
   m_Layer: 8
-  m_Name: Toy
+  m_Name: Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9101230857065804138, guid: 4099f676255555240b5240f897805dce, type: 3}
+  m_Sprite: {fileID: -4986890610287934012, guid: 274d64617113287499ed1c4165d1d8f3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -124,7 +124,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7967271282476220223
+--- !u!114 &-1936454060408841941
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,16 +133,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 586732762957057501}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8da249ef23d19ad4fb699859d93fc5d7, type: 3}
+  m_Script: {fileID: 11500000, guid: 20c36f46394de214585885f761e69f0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   scoreManager: {fileID: 0}
-  points: 5
-  isCoin: 0
-  sprites:
-  - {fileID: -9101230857065804138, guid: 4099f676255555240b5240f897805dce, type: 3}
-  - {fileID: -9101230857065804138, guid: 5fd9f3ec1e3e0bc4d8e308e10012a36a, type: 3}
-  - {fileID: -9101230857065804138, guid: 62a315a8619ac644f899c29e008115c0, type: 3}
-  - {fileID: 8596640243658272642, guid: 5d4daff38e3d9174b873918abcf2c1d4, type: 3}
-  - {fileID: -6086044393419928071, guid: 10f3cacccb0c4c547be76836eba20664, type: 3}
-  spriteRenderer: {fileID: 586732762957057488}
+  points: 0

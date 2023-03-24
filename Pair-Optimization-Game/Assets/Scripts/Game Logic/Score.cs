@@ -30,7 +30,7 @@ public class Score : MonoBehaviour
 
         if (score >= highScore)
         {
-            highScore = score;
+             highScore = score;
              highScoreTxt.text = $"Highscore: {highScore}";
         }
     }
