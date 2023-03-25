@@ -18,14 +18,10 @@ public class Toy : MonoBehaviour
     private void Start()
     {
         score = FindObjectOfType<Score>();
-
-        for(int i = 0; i < sprites.Length; i++)
-        {
-
-            int randSprite = Random.RandomRange(0, sprites.Length);
-
-            spriteRenderer.sprite = sprites[randSprite];
-        }
+  
+        int randSprite = Random.RandomRange(0, sprites.Length);
+        spriteRenderer.sprite = sprites[randSprite];
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

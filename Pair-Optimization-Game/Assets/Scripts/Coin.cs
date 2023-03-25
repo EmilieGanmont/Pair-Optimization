@@ -9,8 +9,6 @@ public class Coin : MonoBehaviour
 
     [SerializeField] private int points;
 
-    private ToyObjectPool toyOB = new ToyObjectPool();
-
 
     private void Start()
     {
@@ -22,6 +20,7 @@ public class Coin : MonoBehaviour
         if (collision.gameObject.layer == 4)
         {
             score.changeScore(points);
+            GameStateManager.changeLives(1);
             this.gameObject.SetActive(false);
         }
 

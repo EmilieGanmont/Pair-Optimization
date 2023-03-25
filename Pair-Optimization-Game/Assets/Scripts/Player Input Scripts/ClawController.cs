@@ -8,6 +8,12 @@ public class ClawController : MonoBehaviour
     [SerializeField] private float distance = 0f;
     [SerializeField] private Transform holdpoint;
 
+    [SerializeField] private Transform LeftClaw;
+
+    [SerializeField] private Transform RightClaw;
+
+    [SerializeField] private float leftRotate, rightRotate; 
+
 
     private bool isGrabbing; 
 
@@ -39,33 +45,18 @@ public class ClawController : MonoBehaviour
 
     private void Shoot(InputAction.CallbackContext obj)
     {
-
-        Debug.Log("Shoot!");
-        if (!currentObject)
+        if (!isGrabbing)
         {
-           Debug.Log("Nothing");
-           Collider2D clawGrab = Physics2D.OverlapCircle(transform.position, distance, Pickup);
-     
-            if(clawGrab)
-            {
-                currentObject = clawGrab.transform;
-
-                Debug.Log("Got item!");
-            }
+            LeftClaw.transform.Rotate(0f, 0f, leftRotate);
+            RightClaw.transform.Rotate(0f, 0f, rightRotate);
+            isGrabbing = true;
         }
         else
         {
-            currentObject = null;
-            Debug.Log("No item!");
+            LeftClaw.transform.Rotate(0f, 0f, -leftRotate);
+            RightClaw.transform.Rotate(0f, 0f, -rightRotate);
+            isGrabbing = false;
         }
     }
 
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.layer == 8)
-        {
-            currentObject = collision.transform;
-        }
-    }
 }

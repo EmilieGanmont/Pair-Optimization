@@ -8,8 +8,6 @@ public class MainPlayerController : MonoBehaviour
 
     [SerializeField] private float movementSpeed = 1f;
 
-   // [SerializeField] private GameObject projectile;
-
     private Rigidbody2D rg2d;
 
     private void Awake()
@@ -22,18 +20,10 @@ public class MainPlayerController : MonoBehaviour
     {
         movement = playercontrols.PlayerMovement.Movement;
         movement.Enable();
-
-       // playercontrols.PlayerMovement.Shoot.performed += Shoot;
-        //playercontrols.PlayerMovement.Shoot.Enable();
     }
 
     private void FixedUpdate()
     {
         rg2d.velocity = movement.ReadValue<Vector2>() * movementSpeed;
     }
-
-   //private void Shoot(InputAction.CallbackContext obj)
-   //{
-   //    Instantiate(projectile, this.transform.position, Quaternion.identity); 
-   //}
 }
