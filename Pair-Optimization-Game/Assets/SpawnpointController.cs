@@ -7,6 +7,7 @@ public class SpawnpointController : MonoBehaviour
     private void Update()
     {
         GameObject toy = ToyObjectPool.SharedInstance.GetPooledObject();
+
         if(toy != null)
         {
             RespawnToy(toy);
@@ -17,7 +18,7 @@ public class SpawnpointController : MonoBehaviour
     public void RespawnToy(GameObject toy)
     {
 
-        int randSpawnPoint = Random.RandomRange(0, respawnPoints.Length);
+        int randSpawnPoint = Random.Range(0, respawnPoints.Length);
         toy.transform.position = respawnPoints[randSpawnPoint].position;
 
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    public GameObject scoreManager;
+    public GameStateManager gameStateManager;
     private Score score;
 
     [SerializeField] private int points;
@@ -12,7 +12,11 @@ public class Coin : MonoBehaviour
 
     private void Start()
     {
+
         score = FindObjectOfType<Score>();
+        gameStateManager = FindObjectOfType<GameStateManager>();
+
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -20,7 +24,10 @@ public class Coin : MonoBehaviour
         if (collision.gameObject.layer == 4)
         {
             score.changeScore(points);
-            GameStateManager.changeLives(1);
+            gameStateManager.changeLives(1);
+            gameStateManager.ResetTime();
+
+
             this.gameObject.SetActive(false);
         }
 

@@ -18,7 +18,7 @@ public class ToyObjectPool : MonoBehaviour
     public int coinAmountToPool;
 
 
-    //public Transform[] respawnPoints;
+    public Transform[] respawnPoints;
 
 
     private void Awake()
@@ -33,14 +33,20 @@ public class ToyObjectPool : MonoBehaviour
 
         for (int i = 0; i < coinAmountToPool; i++)
         {
-            tempToy = Instantiate(coinToPool);
+
+            int randSpawnPoint = Random.Range(0, respawnPoints.Length);
+            new WaitForSeconds(1);
+            tempToy = Instantiate(coinToPool, respawnPoints[randSpawnPoint].transform.position, Quaternion.identity);
             tempToy.SetActive(true);
             pooledObjects.Add(tempToy);
         }
 
         for (int i =0; i< amountToPool; i++)
         {
-            tempToy = Instantiate(objectToPool);
+
+            int randSpawnPoint = Random.Range(0, respawnPoints.Length);
+            new WaitForSeconds(1);
+            tempToy = Instantiate(objectToPool, respawnPoints[randSpawnPoint].transform.position, Quaternion.identity);
             tempToy.SetActive(true);
             pooledObjects.Add(tempToy);
         }
