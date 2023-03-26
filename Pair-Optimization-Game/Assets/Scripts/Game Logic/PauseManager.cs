@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
-    public static bool isPaused;
+    public bool isPaused;
 
     [SerializeField] private ClawController claw;
 
@@ -12,7 +12,13 @@ public class PauseManager : MonoBehaviour
         UnpauseGame();
         GameStateManager.GameIsOver = false;
 
-        claw.ResetRotation();
+
+
+
+        if(ClawController.isGrabbing)
+        {
+            claw.ResetRotation();
+        }
 
         SceneManager.LoadScene(0);
 
@@ -20,7 +26,7 @@ public class PauseManager : MonoBehaviour
 
     }
 
-    public static void StopGame()
+    public void StopGame()
     {
         Time.timeScale = 0f;
         isPaused = true;

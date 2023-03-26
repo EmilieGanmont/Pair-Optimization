@@ -43,9 +43,9 @@ public class ClawController : MonoBehaviour
         {
             gameStateManager.TimeRanOut += TimePunishment;
         }
-        
+        isGrabbing = false;
 
-    }
+}
 
     private void TimePunishment(object sender, EventArgs e)
     {
@@ -61,7 +61,9 @@ public class ClawController : MonoBehaviour
 
     private void Shoot(InputAction.CallbackContext obj)
     {
-        if (!PauseManager.isPaused)
+
+
+       // if (!PauseManager.isPaused)
         {
             if (!isGrabbing)
             {
@@ -69,15 +71,14 @@ public class ClawController : MonoBehaviour
                 RightClawTransform.transform.Rotate(0f, 0f, rightRotate);
                 isGrabbing = true;
 
-                if (gameStateManager != null)
-                {
-                    gameStateManager.changeLives(-1);
-                }
 
+                Debug.Log(isGrabbing);
             }
             else
             {
                 LetGo();
+
+                Debug.Log(isGrabbing);
             }
         }
 
@@ -90,6 +91,11 @@ public class ClawController : MonoBehaviour
                 LeftClawTransform.transform.Rotate(0f, 0f, -leftRotate);
                 RightClawTransform.transform.Rotate(0f, 0f, -rightRotate);
                 isGrabbing = false;
+
+            if (gameStateManager != null)
+            {
+                gameStateManager.changeLives(-1);
+            }
 
         }
     }

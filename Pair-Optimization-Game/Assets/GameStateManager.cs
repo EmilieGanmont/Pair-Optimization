@@ -6,7 +6,7 @@ public class GameStateManager : MonoBehaviour
 {
 
     public int lives;
-    static int startLives = 5;
+    [SerializeField]private int startLives = 5;
 
 
     //Time
@@ -27,6 +27,9 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private GameObject gameOverUI;
 
     public static bool GameIsOver;
+
+
+    [SerializeField] private PauseManager pauseManager; 
 
     private void Start()
     {
@@ -87,7 +90,7 @@ public class GameStateManager : MonoBehaviour
     public void GameOver()
     {
         gameOverUI.SetActive(true);
-        PauseManager.StopGame();
+        pauseManager.StopGame();
         GameIsOver = true;
         lives = startLives;
     }
