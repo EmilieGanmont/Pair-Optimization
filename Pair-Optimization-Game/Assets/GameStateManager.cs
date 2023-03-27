@@ -33,6 +33,7 @@ public class GameStateManager : MonoBehaviour
 
     private void Start()
     {
+        GameIsOver = false;
         lives = startLives;
 
         timeRemaining = startTime;

@@ -5,22 +5,27 @@ public class PauseManager : MonoBehaviour
 {
     public bool isPaused;
 
-    [SerializeField] private ClawController claw;
+    //[SerializeField] private ClawController claw;
+
+    private void Start()
+    {
+        isPaused = false;
+    }
 
     public void ResetGame()
     {
-        UnpauseGame();
-        GameStateManager.GameIsOver = false;
+       SceneManager.LoadScene(0);
+       UnpauseGame();
+       //GameStateManager.GameIsOver = false;
 
 
 
+    
+  // if(ClawController.isGrabbing)
+  // {
+  //     claw.ResetRotation();
+  // }
 
-        if(ClawController.isGrabbing)
-        {
-            claw.ResetRotation();
-        }
-
-        SceneManager.LoadScene(0);
 
         
 

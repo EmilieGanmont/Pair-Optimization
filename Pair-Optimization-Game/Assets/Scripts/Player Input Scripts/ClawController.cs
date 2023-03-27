@@ -18,34 +18,36 @@ public class ClawController : MonoBehaviour
 
     [SerializeField] private float leftRotate, rightRotate;
 
-    GameStateManager gameStateManager; 
+    GameStateManager gameStateManager;
 
 
-    public static bool isGrabbing; 
+    public  bool isGrabbing;
 
     private void Awake()
     {
         playercontrols = new PlayerControls();
 
-        defaultLeftRotation = LeftClawTransform; 
+        defaultLeftRotation = LeftClawTransform;
 
 
         LeftClawTransform = LeftClaw;
         RightClawTransform = RightClaw;
+
     }
 
     private void Start()
     {
+                isGrabbing = false;
         Debug.Log(LeftClawTransform.rotation);
         gameStateManager = FindObjectOfType<GameStateManager>();
 
-        if(gameStateManager != null)
+        if (gameStateManager != null)
         {
             gameStateManager.TimeRanOut += TimePunishment;
         }
-        isGrabbing = false;
 
-}
+
+    }
 
     private void TimePunishment(object sender, EventArgs e)
     {
@@ -54,50 +56,56 @@ public class ClawController : MonoBehaviour
 
     private void OnEnable()
     {
-            playercontrols.PlayerMovement.Shoot.performed += Shoot;
-            playercontrols.PlayerMovement.Shoot.Enable();
+        playercontrols.PlayerMovement.Shoot.performed += Shoot;
+        playercontrols.PlayerMovement.Shoot.Enable();
     }
 
 
     private void Shoot(InputAction.CallbackContext obj)
     {
 
-
-       // if (!PauseManager.isPaused)
+        //if (!PauseManager.isPaused)
         {
-            if (!isGrabbing)
+            if(LeftClaw != null && RightClaw != null)
             {
-                LeftClawTransform.transform.Rotate(0f, 0f, leftRotate);
-                RightClawTransform.transform.Rotate(0f, 0f, rightRotate);
-                isGrabbing = true;
+                if (isGrabbing)
+                {
+                    LetGo();
+                    return;
+                    //
+                    //
+                    //
+                    //
+                    //Debug.Log(LeftClawTransform.rotation);
+                    //Debug.Log(isGrabbing);
+                }
+                else
+                {
 
-
-                Debug.Log(isGrabbing);
+                    LeftClaw.transform.Rotate(0f, 0f, leftRotate);
+                    RightClaw.transform.Rotate(0f, 0f, rightRotate);
+                    isGrabbing = true;
+                    return;
+                }
             }
-            else
-            {
-                LetGo();
 
-                Debug.Log(isGrabbing);
-            }
         }
 
     }
 
     public void LetGo()
     {
-        if(isGrabbing)
-        {
-                LeftClawTransform.transform.Rotate(0f, 0f, -leftRotate);
-                RightClawTransform.transform.Rotate(0f, 0f, -rightRotate);
-                isGrabbing = false;
+       
+       
+            LeftClaw.transform.Rotate(0f, 0f, -leftRotate);
+            RightClaw.transform.Rotate(0f, 0f, -rightRotate);
+            isGrabbing = false;
 
-            if (gameStateManager != null)
+        if (gameStateManager != null)
             {
                 gameStateManager.changeLives(-1);
             }
-
-        }
+        
     }
 
 
