@@ -46,31 +46,33 @@ public class MainPlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rg2d.velocity = movement.ReadValue<Vector2>() * movementSpeed;
+        if (!PauseManager.isPaused)
+        {
+            rg2d.velocity = movement.ReadValue<Vector2>() * movementSpeed;
 
-        if (movement.ReadValue<Vector2>().x > 0f && !facingRight)
-        {
-            sprite.flipX = false;
-            facingRight = true;
-        }
-        else if (movement.ReadValue<Vector2>().x < 0f && facingRight)
-        {
-            sprite.flipX = true;
-            facingRight = false;
-        }
-
-        if ((rg2d.velocity.x != 0 || rg2d.velocity.y != 0))
-        {
-            if(!audioSource.isPlaying && Time.timeScale != 0)
+            if (movement.ReadValue<Vector2>().x > 0f && !facingRight)
             {
-                audioSource.PlayOneShot(hoverSFX);
+                sprite.flipX = false;
+                facingRight = true;
             }
-  
-        }
-        else
-        {
-            audioSource.Stop();
-        }
+            else if (movement.ReadValue<Vector2>().x < 0f && facingRight)
+            {
+                sprite.flipX = true;
+                facingRight = false;
+            }
 
+            if ((rg2d.velocity.x != 0 || rg2d.velocity.y != 0) && !PauseManager.isPaused)
+            {
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.PlayOneShot(hoverSFX);
+                }
+            }
+            else
+            {
+                audioSource.Stop();
+            }
+        }
     }
+
 }

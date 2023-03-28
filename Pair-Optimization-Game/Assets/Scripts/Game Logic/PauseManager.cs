@@ -3,9 +3,11 @@ using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
+
+    //This script controls anytime the game needs to be stopped, including gameovers. Also includes reseting and quiting the game. 
+
     public static bool isPaused;
     [SerializeField] private GameObject pauseUI;
-
 
     private void Start()
     {
@@ -26,11 +28,11 @@ public class PauseManager : MonoBehaviour
             if (isPaused)
             {
                 UnpauseGame();
-                pauseUI.SetActive(false);
+                pauseUI?.SetActive(false);
             }
             else
             {
-                pauseUI.SetActive(true);
+                pauseUI?.SetActive(true);
                 StopGame();
             }
         }
@@ -46,6 +48,11 @@ public class PauseManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         isPaused = false;
+    }
+    
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 
 

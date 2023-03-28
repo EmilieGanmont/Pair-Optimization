@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class Score : MonoBehaviour
 {
@@ -11,15 +10,10 @@ public class Score : MonoBehaviour
     [SerializeField] private Text scoreTxt;
     [SerializeField] private Text highScoreTxt;
 
-
-
-
     private void Start()
     {
         scoreTxt.text = $"Score: {score}";
         highScoreTxt.text = $"Highscore: {highScore}";
-
-       
     }
 
     public void changeScore(int value)
@@ -27,13 +21,11 @@ public class Score : MonoBehaviour
         score += value;
         scoreTxt.text = $"Score: {score}";
 
-
         if (score >= highScore)
         {
-             highScore = score;
-             highScoreTxt.text = $"Highscore: {highScore}";
+            highScore = score;
+            highScoreTxt.text = $"Highscore: {highScore}";
         }
     }
-
 
 }
