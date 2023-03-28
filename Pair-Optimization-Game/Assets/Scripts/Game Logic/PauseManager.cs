@@ -16,7 +16,7 @@ public class PauseManager : MonoBehaviour
 
     public void ResetGame()
     {
-       SceneManager.LoadScene(0);
+       SceneManager.LoadScene("Game");
        UnpauseGame();
        GameStateManager.GameIsOver = false;
     }
