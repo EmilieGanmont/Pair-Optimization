@@ -3,9 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
-    public bool isPaused;
+    public static bool isPaused;
+    [SerializeField] private GameObject pauseUI;
 
-    //[SerializeField] private ClawController claw;
 
     private void Start()
     {
@@ -16,19 +16,24 @@ public class PauseManager : MonoBehaviour
     {
        SceneManager.LoadScene(0);
        UnpauseGame();
-       //GameStateManager.GameIsOver = false;
+       GameStateManager.GameIsOver = false;
+    }
 
-
-
-    
-  // if(ClawController.isGrabbing)
-  // {
-  //     claw.ResetRotation();
-  // }
-
-
-        
-
+    public void PauseGame()
+    {
+        if (!GameStateManager.GameIsOver)
+        {
+            if (isPaused)
+            {
+                UnpauseGame();
+                pauseUI.SetActive(false);
+            }
+            else
+            {
+                pauseUI.SetActive(true);
+                StopGame();
+            }
+        }
     }
 
     public void StopGame()
@@ -37,7 +42,7 @@ public class PauseManager : MonoBehaviour
         isPaused = true;
     }
 
-    void UnpauseGame()
+    public void UnpauseGame()
     {
         Time.timeScale = 1f;
         isPaused = false;

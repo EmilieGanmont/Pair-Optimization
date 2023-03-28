@@ -8,12 +8,16 @@ public class GameStateManager : MonoBehaviour
     public int lives;
     [SerializeField]private int startLives = 5;
 
+    ClawController clawControler = new ClawController(); 
+
 
     //Time
 
     [SerializeField] private float startTime;
     [HideInInspector]public float timeRemaining;
     private float seconds;
+
+    [HideInInspector] public bool timeIsRunning = false; 
 
     public event EventHandler TimeRanOut;
 
@@ -37,34 +41,52 @@ public class GameStateManager : MonoBehaviour
         lives = startLives;
 
         timeRemaining = startTime;
-        timerText.text = $"Time: none idiot";
+        timerText.text = $"Time: {timeRemaining}";
 
 
         _livesText = livesText; 
 
         _livesText.text = $"Plays: {lives}";
-
-
     }
 
     private void Update()
     {
-        if(timeRemaining > 0)
+        if(timeIsRunning)
         {
-            timeRemaining -= Time.deltaTime;
-            DisplayTime(timeRemaining);
-        }
-        else
-        {
-            TimeRanOut?.Invoke(this, EventArgs.Empty);
-            changeLives(-1);
-            timerText.text = $"Time: {timeRemaining}";
-            timeRemaining = startTime;
+            if (timeRemaining > 0)
+            {
+                timeRemaining -= Time.deltaTime;
+                DisplayTime(timeRemaining);
+            }
+            else
+            {
+                TimeRanOut?.Invoke(this, EventArgs.Empty);
+
+                changeLives(-1);
+
+                if(lives < 0)
+                {
+                    timeRemaining = 0;
+                }
+                else
+                {
+                    timeRemaining = startTime;
+                }
+
+                timerText.text = $"Time: {timeRemaining}";
+
+            }
+
+            if (GameIsOver == false)
+            {
+                gameOverUI.SetActive(false);
+            }
         }
 
-        if(GameIsOver == false)
+
+        if (lives <= 0 && timeRemaining <= 0)
         {
-            gameOverUI.SetActive(false);
+                GameOver();
         }
     }
 
@@ -80,12 +102,13 @@ public class GameStateManager : MonoBehaviour
     public void changeLives(int amount)
     {
         lives += amount;
+
+        if (lives < 0)
+        {
+            lives = 0;
+        }
         _livesText.text = $"Plays: {lives}";
 
-        if (lives <= 0)
-        {
-           GameOver(); 
-        }
     }
 
     public void GameOver()

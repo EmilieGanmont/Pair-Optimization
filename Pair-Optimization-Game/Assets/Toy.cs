@@ -12,14 +12,13 @@ public class Toy : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer; 
 
 
-    private ToyObjectPool toyOB = new ToyObjectPool();
-
-
     private void Start()
     {
         score = FindObjectOfType<Score>();
-  
-        int randSprite = Random.RandomRange(0, sprites.Length);
+
+
+
+        int randSprite = Random.Range(0, sprites.Length);
         spriteRenderer.sprite = sprites[randSprite];
         
     }
@@ -30,6 +29,7 @@ public class Toy : MonoBehaviour
         {
             score.changeScore(points);
             this.gameObject.SetActive(false);
+
         }
 
     }
