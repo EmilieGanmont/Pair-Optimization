@@ -8,6 +8,7 @@ TagManager:
   - Projectile
   - Pickup
   - Goal
+  - EndArea
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - Projectile
   - Pickup
   - InvisibleBarrier
-  - 
+  - EndArea
   - 
   - 
   - 

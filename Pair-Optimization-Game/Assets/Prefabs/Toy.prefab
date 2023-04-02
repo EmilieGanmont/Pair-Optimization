@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 586732762957057491}
   - component: {fileID: 586732762957057490}
   - component: {fileID: 7967271282476220223}
+  - component: {fileID: -9197412448848479441}
   m_Layer: 8
   m_Name: Toy
   m_TagString: Pickup
@@ -150,3 +151,16 @@ MonoBehaviour:
   - {fileID: 7289260420643192476, guid: 44f61062668c947418daa0363265b222, type: 3}
   - {fileID: -5195487686032739884, guid: 1be4f088c23bfd74091c162649ac6f15, type: 3}
   spriteRenderer: {fileID: 586732762957057488}
+--- !u!114 &-9197412448848479441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 586732762957057501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a51c134d3a69e6f4aa6a4e14009a1523, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 586732762957057490}
